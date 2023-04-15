@@ -1,4 +1,4 @@
-import './NameSetter.css';
+import './NameSetter.scss';
 
 function NameSetter({ name, setName }) {
   return (

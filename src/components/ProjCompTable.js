@@ -1,9 +1,10 @@
+import './ProjCompTable.scss'
 
 import { Form } from 'react-bootstrap';
 
-export default function ProjCompTable({ projects, competencies, projHasCompMap, setProjectCompetency }) {
+export default function ProjCompTable({ projects, competencies, projCompMap, setProjectCompetency }) {
   return (
-    <table>
+    <table className='ProjCompTable'>
       <tbody>
         <tr>
           <th>Competencies</th>
@@ -19,7 +20,7 @@ export default function ProjCompTable({ projects, competencies, projHasCompMap, 
                 <Form.Check
                   type='checkbox'
                   id={p.id + ":" + c.id}
-                  checked={projHasCompMap.get(p.id)?.get(c.id)}
+                  checked={projCompMap.get(p.id)?.get(c.id)?.isChecked}
                   onChange={(e) => setProjectCompetency(p.id, c.id, e.target.checked)}
                 />
               </td>
