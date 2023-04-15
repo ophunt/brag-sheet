@@ -6,7 +6,7 @@ import { enableMapSet } from "immer";
 
 import NameSetter from "./components/NameSetter"
 import ExpandableList from './components/ExpandableList';
-import { Form } from 'react-bootstrap';
+import ProjCompTable from './components/ProjCompTable';
 
 // Let us use Maps and Sets with Immer (nice for project-competency relation)
 enableMapSet();
@@ -100,9 +100,7 @@ function App() {
 
       <div>
         <h4>Define Competencies</h4>
-        <p>
-          For each project that will end up on this sheet, you'll enter a name, a description, and select which <b>competencies</b> it has demonstrated. Let's make a list of those competencies now.
-        </p>
+        <p>For each project that will end up on this sheet, you'll enter a name, a description, and select which <b>competencies</b> it has demonstrated. Let's make a list of those competencies now.</p>
         <ExpandableList
           itemCategoryName='Competency'
           list={competencies}
@@ -131,31 +129,7 @@ function App() {
       <div>
         <h4>Assign Competencies to Projects</h4>
         <p>For each of those projects, select which competencies you demonstrated. You'll have a chance to provide details for all of these later.</p>
-        <table>
-          <tbody>
-            <tr>
-              <th>Competencies</th>
-              {competencies.map(c => (
-                <th key={c.id}>{c.name}</th>
-              ))}
-            </tr>
-            {projects.map(p => (
-              <tr key={p.id}>
-                <th>{p.name}</th>
-                {competencies.map(c => (
-                  <td key={c.id}>
-                    <Form.Check
-                      type='checkbox'
-                      id={p.id + ":" + c.id}
-                      checked={projHasCompMap.get(p.id)?.get(c.id)}
-                      onChange={(e) => setProjectCompetency(p.id, c.id, e.target.checked)}
-                    />
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <ProjCompTable {...{ projects, competencies, projHasCompMap, setProjectCompetency }} />
       </div>
     </div>
   );
