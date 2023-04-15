@@ -1,0 +1,16 @@
+.existingBullet {
+  &>button {
+    margin-left: 0.25rem;
+  }
+}
+
+.addNewBullet {
+  width: fit-content;
+  padding: 1px 2px;
+  list-style-type: '+  ';
+  font-weight: bold;
+  cursor: pointer;
+  color: green;
+  border: 1px solid green;
+  border-radius: 2px;
+}
